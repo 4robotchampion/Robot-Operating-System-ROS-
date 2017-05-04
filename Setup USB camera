@@ -7,3 +7,4 @@ cd ~/catkin_ws/src
 git clone https://github.com/bosch-ros-pkg/usb_cam.git
 cd ..
 catkin_make
+catkin_make --pkg usb_cam -DCMAKE_BUILD_TYPE=Release
