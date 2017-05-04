@@ -1,3 +1,8 @@
 # Setting the USB camera
+1.Installing from ubuntu repo
+sudo apt-get install ros-kinetic-usb-cam
+or manually install
 1.Download the package
 https://github.com/bosch-ros-pkg/usb_cam
+2. create a package using catkin_ws
+catkin_create_package usb_cam
