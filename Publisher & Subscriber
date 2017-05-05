@@ -1,0 +1,41 @@
+# Publisher
+#!/usr/bin/python
+import rospy
+from std_msgs.msg import String
+
+
+def talker():
+
+    rospy.init_node('aruco_cv')
+    pub = rospy.Publisher('hello_pub', String, queue_size=10)
+    r = rospy.Rate(1) # 10hz
+    
+    while not rospy.is_shutdown():
+        info = "hello world %s" % rospy.get_time()
+        rospy.loginfo(info)
+        pub.publish(info)
+        r.sleep()
+
+if __name__ == "__main__":
+
+    try:
+        talker()
+    except rospy.ROSInterruptException: pass
+
+
+# Subscriber
+#!/usr/bin/python
+import rospy
+from std_msgs.msg import String
+
+def callback(data):
+    rospy.loginfo(rospy.get_caller_id()+"I heard %s",data.data)
+
+def listener():
+    rospy.init_node('hello_world_subscriber')
+    rospy.Subscriber("hello_pub", String, callback)
+
+    rospy.spin()
+    
+if __name__ == '__main__':
+    listener()
